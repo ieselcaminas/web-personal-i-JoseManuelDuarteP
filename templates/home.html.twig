@@ -3,7 +3,14 @@
 {% block title %}Aeródromo Web{% endblock %}
 
 {% block body %}
-    <h1>Bienvenido a tu aeródromo online</h1>
+    <header class='cabezera'></header>
+    <div class='logoutHome'>
+        <h1>Bienvenido al Aeródromo Web</h1>
+        {% if app.user %}
+        <button onclick="location.href='{{ path('logout') }}'">Cerrar sesión</button>
+        {% endif %}
+    </div>
+    
     {% if app.user %}
         <p>Hola, {{ app.user.nombre }}.</p>
         <p>Desde aquí puedes gestionar tus aeronaves.</p>
