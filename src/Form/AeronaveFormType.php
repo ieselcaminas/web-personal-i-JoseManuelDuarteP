@@ -9,6 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class AeronaveFormType extends AbstractType
@@ -25,6 +26,11 @@ class AeronaveFormType extends AbstractType
             ->add('propietario', EntityType::class, [
                 'class' => Propietario::class,
                 'choice_label' => 'nombre',
+            ])
+            ->add('imagen', FileType::class, [
+                'label' => 'Imagen de la aeronave (opcional)',
+                'mapped' => false,
+                'required' => false,
             ])
             ->add('guardar' , SubmitType::class, ['label' => 'Guardar'])
             ->add('cancelar' , SubmitType::class, ['label' => 'Cancelar'])

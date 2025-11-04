@@ -1,0 +1,2 @@
+parameters:
+    aeronaves_directory: '%kernel.project_dir%/public/uploads/aeronaves'

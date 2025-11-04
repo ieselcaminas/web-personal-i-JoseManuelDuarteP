@@ -60,7 +60,13 @@ final class PageController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $aeronave = $form->getData();
+            $imagen = $form->get('imagen')->getData();
+
+            if ($imagen) {
+                $nombreArchivo = uniqid().'.'.$imagen->guessExtension();
+                $imagen->move($this->getParameter('aeronaves_directory'), $nombreArchivo);
+                $aeronave->setImagen($nombreArchivo);
+            }
 
             $entityManager = $doctrine->getManager();
             $entityManager->persist($aeronave);
@@ -103,14 +109,27 @@ final class PageController extends AbstractController
         }
 
         $aeronave = $doctrine->getRepository(Aeronave::class)->find($id);
-
         
         if ($aeronave) {
             $form = $this->createForm(AeronaveFormType::class, $aeronave);
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
-                $aeronave = $form->getData();
+                $imagen = $form->get('imagen')->getData();
+
+                if ($imagen) {
+                    
+                    if ($aeronave->getImagen()) {
+                        $rutaImagenExistente = $this->getParameter('aeronaves_directory').'/'.$aeronave->getImagen();
+                        if (file_exists($rutaImagenExistente)) {
+                            unlink($rutaImagenExistente);
+                        }
+                    }
+
+                    $nombreArchivo = uniqid().'.'.$imagen->guessExtension();
+                    $imagen->move($this->getParameter('aeronaves_directory'), $nombreArchivo);
+                    $aeronave->setImagen($nombreArchivo);
+                }
 
                 $entityManager = $doctrine->getManager();
                 $entityManager->persist($aeronave);

@@ -4,3 +4,8 @@
     <li>Fecha de Construcción: {{ fechaFormateada }}</li>
     <li>Apodo: {{ aeronave.apodo }}</li>
 </ul>
+{% if aeronave.imagen %}
+    <div>
+        <img class="fichaAeronave" src="/uploads/aeronaves/{{ aeronave.imagen }}" alt="Imagen de la aeronave {{ aeronave.apodo }}">
+    </div>
+{% endif %}

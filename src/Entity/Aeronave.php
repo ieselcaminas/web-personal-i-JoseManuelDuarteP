@@ -27,6 +27,9 @@ class Aeronave
     #[ORM\JoinColumn(nullable: false)]
     private ?Propietario $propietario = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imagen = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -76,6 +79,18 @@ class Aeronave
     public function setPropietario(?Propietario $propietario): static
     {
         $this->propietario = $propietario;
+
+        return $this;
+    }
+
+    public function getImagen(): ?string
+    {
+        return $this->imagen;
+    }
+
+    public function setImagen(?string $imagen): static
+    {
+        $this->imagen = $imagen;
 
         return $this;
     }
