@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block title %}Ficha Aeronave{% endblock %}
+
+{% block body %}
+    <h1>Ficha Aeronave</h1>
+
+    {% if aeronave %}
+
+        {% include 'partials/info_aeronave.html.twig' %}
+
+        <button onclick="location.href='{{ path('editar_aeronave', {'id': aeronave.id}) }}'">Editar</button>
+        <button onclick="location.href='{{ path('home') }}'">Volver</button>
+        <button onclick="if(confirm('¿Estás seguro de que deseas eliminar esta aeronave?')) 
+        { location.href='{{ path('eliminar_aeronave', {'id': aeronave.id}) }}' }">Eliminar</button>
+
+    {% else %}
+        <p>No se encontró la aeronave</p>
+    {% endif %}
+{% endblock %}

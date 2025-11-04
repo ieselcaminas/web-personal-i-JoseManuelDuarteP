@@ -1,2 +1,2 @@
 # repositorio
-Template para iniciar un proyecto en blanco
+El proyecto será de una página sencilla de aeródromo, con aviones y sus propietarios.

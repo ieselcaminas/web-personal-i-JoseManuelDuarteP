@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Aeródromo Web{% endblock %}
+
+{% block body %}
+    <h1>Bienvenido a tu aeródromo online</h1>
+    {% if app.user %}
+        <p>Hola, {{ app.user.nombre }}.</p>
+        <p>Desde aquí puedes gestionar tus aeronaves.</p>
+
+        <ul>
+            {% for a in aeronaves %}
+                
+                <li>
+                    <a href="{{ path('ver_aeronave', {'id': a.id}) }}">
+                        {{ a.apodo }} - ({{ a.modelo }})
+                </li>
+
+            {% else %}
+                <li>No tienes aeronaves registradas.</li>
+            {% endfor %}
+        </ul>
+
+        <p>
+            <a href="{{ path('registrar_aeronave') }}">Registra una aeronave</a> o 
+            <a href="{{ path('registrar_propietario') }}">registrate como propietario</a>
+        </p>
+    {% else %}
+        <p>No se ha iniciado sesión</p>
+        <p>
+            <a href="{{ path('login') }}">Inicia sesión</a> o 
+            <a href="{{ path('app_register')}}">registrate</a>
+        </p>
+    {% endif %}
+{% endblock %}
