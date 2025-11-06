@@ -114,8 +114,14 @@ final class PageController extends AbstractController
             $form = $this->createForm(AeronaveFormType::class, $aeronave);
             $form->handleRequest($request);
 
-            if ($form->isSubmitted() && $form->isValid()) {
-                $imagen = $form->get('imagen')->getData();
+            if ($form->isSubmitted()) {
+
+                if ($form->get('cancelar')->isClicked()) {
+                    return $this->redirectToRoute('home');
+                }
+
+                if($form->isValid()) {
+                    $imagen = $form->get('imagen')->getData();
 
                 if ($imagen) {
                     
@@ -135,6 +141,8 @@ final class PageController extends AbstractController
                 $entityManager->persist($aeronave);
                 $entityManager->flush();
                 return $this->redirectToRoute('ver_aeronave', ['id' => $aeronave->getId()]);
+                }
+                
             }
             return $this->render('registrar_aeronave.html.twig', [
                 'form' => $form->createView()

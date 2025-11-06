@@ -8,6 +8,11 @@
         <h1>Bienvenido al Aeródromo Web</h1>
         {% if app.user %}
         <button onclick="location.href='{{ path('logout') }}'">Cerrar sesión</button>
+        {% else %}
+            <div>
+                <button onclick="location.href='{{ path('login') }}'">Iniciar sesión</button>
+                <button onclick="location.href='{{ path('app_register') }}'">Registrarse</button>
+            </div>
         {% endif %}
     </div>
     
@@ -33,10 +38,32 @@
             <a href="{{ path('registrar_propietario') }}">registrate como propietario</a>
         </p>
     {% else %}
-        <p>No se ha iniciado sesión</p>
-        <p>
-            <a href="{{ path('login') }}">Inicia sesión</a> o 
-            <a href="{{ path('app_register')}}">registrate</a>
-        </p>
+        <div class="homeContainer">
+            <div class="slider">
+            <img src="../resources/a1.jpeg" alt="Imagen 1">
+            <img src="../resources/a2.webp" alt="Imagen 2">
+            <img src="../resources/a3.webp" alt="Imagen 3">
+            <img src="../resources/a4.jpg" alt="Imagen 4">
+            <img src="../resources/a5.webp" alt="Imagen 5">
+        </div>
+        <div class="introText">
+            <h3>Explora el mundo de la aviación con Aeródromo Web</h3>
+            <p>
+                Bienvenido a Aeródromo Web, tu punto de encuentro para todo lo relacionado
+                con la aviación ligera y la gestión de aeronaves. Aquí podrás crear y gestionar
+                el registro de tus aviones, compartir información sobre su mantenimiento,
+                conservar el historial de vuelos y documentar mejoras técnicas. Nuestra
+                plataforma está pensada tanto para propietarios particulares como para pequeños
+                aeroclubes: facilita la organización de revisiones, la subida de imágenes y
+                documentos, y la coordinación de eventos y vuelos de grupo.
+            </p>
+            <p>
+                Además, en Aeródromo Web promovemos las buenas prácticas de seguridad: encontrarás
+                guías sobre mantenimiento preventivo, recomendaciones para inspecciones previas
+                al vuelo, y enlaces a recursos oficiales. Regístrate para empezar a añadir tus
+                aeronaves, conectar con otros entusiastas y mantener toda la documentación al día.
+            </p>
+        </div>
+        </div>
     {% endif %}
 {% endblock %}
