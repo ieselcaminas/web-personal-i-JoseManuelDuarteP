@@ -8,10 +8,12 @@
 
         {% include 'partials/info_aeronave.html.twig' %}
 
-        <button onclick="location.href='{{ path('editar_aeronave', {'id': aeronave.id}) }}'">Editar</button>
-        <button onclick="location.href='{{ path('home') }}'">Volver</button>
-        <button onclick="if(confirm('¿Estás seguro de que deseas eliminar esta aeronave?')) 
-        { location.href='{{ path('eliminar_aeronave', {'id': aeronave.id}) }}' }">Eliminar</button>
+        <div>
+            <button onclick="location.href='{{ path('editar_aeronave', {'id': aeronave.id}) }}'">Editar</button>
+            <button onclick="location.href='{{ path('home') }}'">Volver</button>
+            <button onclick="if(confirm('¿Estás seguro de que deseas eliminar esta aeronave?')) 
+            { location.href='{{ path('eliminar_aeronave', {'id': aeronave.id}) }}' }">Eliminar</button>
+        </div>
 
     {% else %}
         <p>No se encontró la aeronave</p>

@@ -18,20 +18,44 @@
     
     {% if app.user %}
         <p>Hola, {{ app.user.nombre }}.</p>
-        <p>Desde aquí puedes gestionar tus aeronaves.</p>
+        <p>Desde aquí puedes gestionar tus aeronaves. Haz click en la imagen para dirigirte a su ficha</p>
 
-        <ul>
-            {% for a in aeronaves %}
-                
-                <li>
-                    <a href="{{ path('ver_aeronave', {'id': a.id}) }}">
-                        {{ a.apodo }} - ({{ a.modelo }})
-                </li>
+        <div class="contenidosHome">
+            <table class="tablaFichas">
+                <tr>
+                    <th>Apodo</th>
+                    <th>Modelo</th>
+                    <th>Imagen</th>
+                </tr>
+                {% for a in aeronaves %}
+                    
+                    <tr>
+                        <td>{{ a.apodo }}</td>
+                        <td class="modeloEnTabla">{{ a.modelo }}</td>
+                        <td>
+                            {% if a.imagen %}
+                                <img class="imgClick" src="{{ asset('uploads/aeronaves/' ~ a.imagen) }}" alt="Imagen de {{ a.apodo }}" width="200"
+                                    onclick="location.href='{{ path('ver_aeronave', {'id': a.id}) }}'">
+                            {% else %}
+                                No hay imagen
+                            {% endif %}
+                        </td>
+                    </tr>
 
-            {% else %}
-                <li>No tienes aeronaves registradas.</li>
-            {% endfor %}
-        </ul>
+                {% else %}
+                    <li>No tienes aeronaves registradas.</li>
+                {% endfor %}
+            </table>
+            <div>
+                {% include 'partials/_chat.html.twig' %}
+
+                <form method="post">
+                    <input type="text" name="prompt" autocomplete="off" placeholder="Escribe tu mensaje aquí..." value="{{ userMessage|default('') }}" required />
+                    <input type="submit" value="Enviar" />
+                </form>
+            </div>
+
+        </div>
 
         <p>
             <a href="{{ path('registrar_aeronave') }}">Registra una aeronave</a> o 

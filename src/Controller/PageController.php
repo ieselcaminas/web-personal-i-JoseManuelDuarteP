@@ -59,19 +59,27 @@ final class PageController extends AbstractController
         $form = $this->createForm(AeronaveFormType::class, $aeronave);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $imagen = $form->get('imagen')->getData();
+        if ($form->isSubmitted()) {
 
-            if ($imagen) {
-                $nombreArchivo = uniqid().'.'.$imagen->guessExtension();
-                $imagen->move($this->getParameter('aeronaves_directory'), $nombreArchivo);
-                $aeronave->setImagen($nombreArchivo);
+            if ($form->get('cancelar')->isClicked()) {
+                return $this->redirectToRoute('home');
             }
 
-            $entityManager = $doctrine->getManager();
-            $entityManager->persist($aeronave);
-            $entityManager->flush();
-            return $this->redirectToRoute('home');
+            if($form->isValid()) {
+                $imagen = $form->get('imagen')->getData();
+
+                if ($imagen) {
+                    $nombreArchivo = uniqid().'.'.$imagen->guessExtension();
+                    $imagen->move($this->getParameter('aeronaves_directory'), $nombreArchivo);
+                    $aeronave->setImagen($nombreArchivo);
+                }
+
+                $entityManager = $doctrine->getManager();
+                $entityManager->persist($aeronave);
+                $entityManager->flush();
+                return $this->redirectToRoute('home');
+            }
+            
         }
         return $this->render('registrar_aeronave.html.twig', [
             'form' => $form->createView()

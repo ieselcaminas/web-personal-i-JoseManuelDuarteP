@@ -1,0 +1,17 @@
+{# templates/partials/_chat.html.twig #}
+<div class="chat">
+    {% if messages is defined %}
+        {% for msg in messages %}
+            {% if msg.role != 'system' %}
+                <p>
+                    <strong class="{{ msg.role == 'user' ? 'user' : (msg.role == 'assistant' ? 'assistant' : '') }}">
+                        {{ msg.role|capitalize }}:
+                    </strong>
+                    {{ msg.content|nl2br }}
+                </p>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <p>No hay mensajes aún.</p>
+    {% endif %}
+</div>

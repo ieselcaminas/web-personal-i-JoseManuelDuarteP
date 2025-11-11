@@ -13,12 +13,17 @@ class PropietarioFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nombre')
-            ->add('telefono')
-            ->add('edad')
+            ->add('nombre', null, [
+                'label' => 'Nombre: '
+            ])
+            ->add('telefono', null, [
+                'label' => 'Teléfono: '
+            ])
+            ->add('edad', null, [
+                'label' => 'Edad: '
+            ])
 
             ->add('guardar', SubmitType::class, ['label' => 'Guardar'])
-            ->add('cancelar', SubmitType::class, ['label' => 'Cancelar'])
         ;
     }
 

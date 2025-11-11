@@ -11,29 +11,34 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 
 class AeronaveFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('modelo')
+            ->add('modelo', null, [
+                'label' => 'Modelo: '
+            ])
             ->add('fecha_construccion', DateType::class, [
                 'widget' => 'single_text',
                 'years' => range(1900, date('Y')),
+                'label' => 'Fecha de construcción: '
             ])
-            ->add('apodo')
+            ->add('apodo', null, [
+                'label' => 'Apodo: '
+            ])
             ->add('propietario', EntityType::class, [
                 'class' => Propietario::class,
                 'choice_label' => 'nombre',
-            ])
+                'label' => 'Propietario: '])
             ->add('imagen', FileType::class, [
                 'label' => 'Imagen de la aeronave (opcional)',
                 'mapped' => false,
                 'required' => false,
             ])
             ->add('guardar' , SubmitType::class, ['label' => 'Guardar'])
-            ->add('cancelar' , SubmitType::class, ['label' => 'Cancelar'])
         ;
     }
 

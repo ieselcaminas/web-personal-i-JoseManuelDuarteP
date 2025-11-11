@@ -1,11 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends 'template_formularios.html.twig' %}
 
 {% block title %}Nueva aeronave{% endblock %}
 
-{% block body %}
+{% block body2 %}
 
-    <h1>Registrar aeronave</h1>
+    <h1>Datos aeronave</h1>
 
     {{ form(form) }}
+    <a class='cancelarForm' href="{{ path('home') }}">Cancelar</a>
 
 {% endblock %}

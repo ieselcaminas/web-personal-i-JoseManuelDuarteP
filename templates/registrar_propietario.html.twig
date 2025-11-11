@@ -1,11 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends 'template_formularios.html.twig' %}
 
 {% block title %}Nuevo propietario{% endblock %}
 
-{% block body %}
+{% block body2 %}
 
     <h1>Registrar propietario</h1>
 
     {{ form(form) }}
+    <a class='cancelarForm' href="{{ path('home') }}">Cancelar</a>
 
 {% endblock %}
