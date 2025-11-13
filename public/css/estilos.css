@@ -68,6 +68,18 @@ main {
     gap: 20px;
 }
 
+.chatContainer {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+.chatFooter {
+    font-size: 12px;
+}
+
 .introText {
     text-align: justify;
     flex: 1;

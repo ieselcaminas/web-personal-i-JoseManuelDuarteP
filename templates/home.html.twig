@@ -46,13 +46,17 @@
                     <li>No tienes aeronaves registradas.</li>
                 {% endfor %}
             </table>
-            <div>
-                {% include 'partials/_chat.html.twig' %}
+            <div class="chatContainer">
+                <h3>Chat con IA sobre aviación</h3>
+                <div id="chatContainer" style="border:1px solid #ccc; padding:10px; width:400px; max-height:300px; overflow-y:auto;">
+                <!-- Aquí se irán agregando los mensajes -->
+                </div>
 
-                <form method="post">
-                    <input type="text" name="prompt" autocomplete="off" placeholder="Escribe tu mensaje aquí..." value="{{ userMessage|default('') }}" required />
-                    <input type="submit" value="Enviar" />
+                <form id="chatForm">
+                    <input type="text" id="chatInput" placeholder="Escribe tu mensaje..." autocomplete="off" required />
+                    <button type="submit">Enviar</button>
                 </form>
+                <p class="chatFooter"><i>Las respuestas pueden tardar en generarse, gracias por su paciencia.</i></p>
             </div>
 
         </div>
@@ -90,4 +94,5 @@
         </div>
         </div>
     {% endif %}
+    <script src="/js/chat.js"></script>
 {% endblock %}
